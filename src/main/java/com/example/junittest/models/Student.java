@@ -3,6 +3,8 @@ package com.example.junittest.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -12,6 +14,9 @@ public class Student {
     private String names;
 
     private String gender;
+
+    @OneToMany
+    private List<Course> courses;
 
     public Student() {
     }
@@ -25,6 +30,13 @@ public class Student {
         this.id = id;
         this.names = names;
         this.gender = gender;
+    }
+
+    public Student(Integer id, String names, String gender, List<Course> courses) {
+        this.id = id;
+        this.names = names;
+        this.gender = gender;
+        this.courses = courses;
     }
 
     public Integer getId() {
@@ -50,4 +62,27 @@ public class Student {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void setCourse(Course courses) {
+        this.courses.add(courses);
+    }
+
+
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Student [id=%s, name=%s, gender=%s, courses=%s]", id,
+                names, gender, courses);
+    }
+
+
 }

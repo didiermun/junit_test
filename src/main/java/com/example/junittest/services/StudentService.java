@@ -1,10 +1,12 @@
 package com.example.junittest.services;
 
+import com.example.junittest.models.Course;
 import com.example.junittest.models.Student;
 import com.example.junittest.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 
@@ -43,5 +45,35 @@ public class StudentService {
     public Student detailStudent(Integer id){
         return studentRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Student with id "+id+ " not found!"));
+    }
+
+    public List<Course> retrieveCourses(Integer studentId) {
+        Student student = detailStudent(studentId);
+        return student.getCourses();
+    }
+
+    public Course retrieveCourse(Integer studentId, Integer courseId) {
+        Student student = detailStudent(studentId);
+
+        for (Course course : student.getCourses()) {
+            if (course.getId().equals(courseId)) {
+                return course;
+            }
+        }
+
+        return null;
+    }
+
+    public Course addCourse(Integer studentId, Course course) {
+        Student student = detailStudent(studentId);
+
+        if (student == null) {
+            return null;
+        }
+
+        student.setCourse(course);
+        studentRepository.save(student);
+
+        return course;
     }
 }
