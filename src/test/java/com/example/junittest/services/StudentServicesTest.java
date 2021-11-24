@@ -37,7 +37,7 @@ public class StudentServicesTest {
     @Test
     public  void createStudent(){
         when(studentRepository.save(ArgumentMatchers.any(Student.class))).thenReturn(new Student(1,"Annabelle","Transsexual Woman"));
-        assertEquals("Transsexual Woman",studentService.createStudent("Didier","Male",4).getGender());
+        assertEquals("Transsexual Woman",studentService.createStudent(4,"Didier","Male").getGender());
 //        assertEquals("Male",studentService.createStudent("Didier","Male",4).getGender());
     }
     @Test

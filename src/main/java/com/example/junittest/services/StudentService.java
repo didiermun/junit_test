@@ -18,7 +18,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student createStudent(String name, String gender, Integer id){
+    public Student createStudent( Integer id,String name, String gender){
         Student student = new Student(id, name, gender);
 
         return studentRepository.save(student);
@@ -44,4 +44,6 @@ public class StudentService {
         return studentRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Student with id "+id+ " not found!"));
     }
+
+
 }
