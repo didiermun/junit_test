@@ -1,5 +1,6 @@
 package com.example.junittest.services;
 
+import com.example.junittest.models.Course;
 import com.example.junittest.models.Student;
 import com.example.junittest.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,27 @@ public class StudentService {
     }
 
 
+    public Course addCourse(Integer studentId, Course course) {
+        Student student = detailStudent(studentId);
+        if (student == null) {
+            return null;
+        }
+        student.setCourse(course);
+        studentRepository.save(student);
+        return course;
+    }
+    public Course retrieveCourse(Integer studentId, Integer courseId) {
+        Student student = detailStudent(studentId);
+        for (Course course : student.getCourses()) {
+            if (course.getId().equals(courseId)) {
+                return course;
+            }
+        }
+        return null;
+    }
+
+    public List<Course> retrieveCourses(Integer studentId) {
+        Student student = detailStudent(studentId);
+        return student.getCourses();
+    }
 }

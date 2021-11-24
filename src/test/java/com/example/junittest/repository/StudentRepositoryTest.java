@@ -44,14 +44,14 @@ public class StudentRepositoryTest {
         assertEquals(students.size(),6);
     }
 
-//    @Test
-//    public void findByName() {
-//        Optional<Student> student = studentRepository.findByName("Cnelle");
-//
-//        if (!student.isPresent())
-//            fail("Student with this name is not found");
-//
-//        assertEquals(student.get().getId(), 107);
-//    }
+    @Test
+    public void findByName() {
+        Optional<Student> student = studentRepository.findByNames("Cnelle");
+
+        if (!student.isPresent())
+            fail("Student with this name is not found");
+
+        assertEquals(student.get().getId(), 107);
+    }
 
 }
