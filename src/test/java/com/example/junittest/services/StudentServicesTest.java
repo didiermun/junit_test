@@ -1,6 +1,5 @@
 package com.example.junittest.services;
 
-
 import com.example.junittest.models.Course;
 import com.example.junittest.models.Student;
 import com.example.junittest.repository.StudentRepository;
@@ -9,19 +8,11 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
@@ -35,7 +26,6 @@ public class StudentServicesTest {
 
     @InjectMocks
     StudentService studentService;
-
 
 
     @Test
@@ -120,20 +110,7 @@ public class StudentServicesTest {
 
         assertEquals("P001",studentService.retrieveCourses(st.getId()).get(1).getCode());
     }
-//
-//    @Test
-//    public void retrieveDetailsForCourse() {
-//        Course course = new Course(1, "M002","Mathematics","Mathematics Course");
-//        Student st = new Student(2,"Loraine","Female");
-//
-//
-//        when(studentRepository.findById(st.getId())).thenReturn(Optional.of(st));
-//        when(studentService.retrieveCourse(st.getId(), course.getId())).thenReturn(course);
-//
-//        String expected = "[id=1, code=M002, name=Mathematics, description=Mathematics Course]";
-//
-//        assertEquals(expected, st.getCourses());
-//        verify(studentRepository).findById(st.getId());
-//    }
+
+
 
 }

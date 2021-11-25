@@ -1,7 +1,9 @@
 package com.example.junittest.controllers;
 
 
+import com.example.junittest.models.Course;
 import com.example.junittest.models.Student;
+import com.example.junittest.services.CourseService;
 import com.example.junittest.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ public class StudentController {
 
     @Autowired
     StudentService studentService;
+    Course course;
 
     @GetMapping("/get-all")
     public List<Student> getAll(){
@@ -48,5 +51,10 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Student removed");
     }
+
+//    @PostMapping("/addCourse-student")
+//    public ResponseEntity<?> addCourseToStudent(@PathVariable int courseId, @RequestBody Student student){
+//        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createStudent(student.getId(),student.getNames(), student.getGender(), course.getId()));
+//    }
 
 }

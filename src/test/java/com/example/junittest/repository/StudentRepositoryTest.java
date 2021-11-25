@@ -10,8 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -27,14 +26,26 @@ public class StudentRepositoryTest {
         assertEquals(7, items.size());
     }
 
+
+
     @Test
     public void findOnne_Success(){
 
         Optional<Student> studentOption = studentRepository.findById(101);
-       if(!studentOption.isPresent())
-           fail("Student with this id is not found");
-       assertEquals(studentOption.get().getNames(),"Chanell");
+        if(!studentOption.isPresent())
+            fail("Student with this id is not found");
+        assertEquals(studentOption.get().getNames(),"Chanell");
     }
+
+
+
+    @Test
+    public void findOnne_404(){
+
+        Optional<Student> student = studentRepository.findById(110);
+        assertEquals(false, student.isPresent());
+    }
+
 
     @Test
     public void removeOne(){
@@ -45,6 +56,16 @@ public class StudentRepositoryTest {
     }
 
     @Test
+    public void removeOne_404(){
+        studentRepository.deleteById(101);
+        Optional<Student> students = studentRepository.findById(101);
+
+        assertEquals(false,students.isPresent());
+    }
+
+
+
+    @Test
     public void findByName() {
         Optional<Student> student = studentRepository.findByNames("Cnelle");
 
@@ -53,5 +74,13 @@ public class StudentRepositoryTest {
 
         assertEquals(student.get().getId(), 107);
     }
+
+    @Test
+    public void findByName_404(){
+        Optional<Student> student = studentRepository.findByNames("Cneeeee");
+        assertFalse(student.isPresent());
+    }
+
+
 
 }

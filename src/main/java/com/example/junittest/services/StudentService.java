@@ -65,7 +65,6 @@ public class StudentService {
         }
         return null;
     }
-
     public List<Course> retrieveCourses(Integer studentId) {
         Student student = detailStudent(studentId);
         return student.getCourses();

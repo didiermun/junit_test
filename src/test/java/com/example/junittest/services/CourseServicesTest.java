@@ -42,7 +42,7 @@ public class CourseServicesTest {
     @Test
     public  void createCourse(){
         when(courseRepository.save(ArgumentMatchers.any(Course.class))).thenReturn(new Course(1,"SE01","Software Engineering","Software engineering"));
-        assertEquals("SE01",courseService.createCourse("M001","Math 1","Mathematics I", 1).getCode());
+        assertEquals("SE01",courseService.createCourse( 1,"M001","Math 1","Mathematics I").getCode());
 //        assertEquals("M001",courseService.createCourse("M001","Math 1","Mathematics I", 1).getCode());
     }
 
