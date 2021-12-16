@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseService {
@@ -39,8 +40,12 @@ public class CourseService {
     }
 
     public Course detailCourse(Integer id){
-        return courseRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("Course with id "+id+ " not found!"));
+        Optional<Course> course = courseRepository.findById(id);
+             if(course.isPresent()){
+                 Course course1 = course.get();
+                 return course1;
+             }
+             return null;
     }
 
 }

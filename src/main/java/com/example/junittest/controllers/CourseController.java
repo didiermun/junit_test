@@ -49,5 +49,7 @@ public class CourseController {
     public ResponseEntity<?> deleteCourse(@PathVariable int id){
         courseService.deleteCourse(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Course removed");
+
     }
+
 }

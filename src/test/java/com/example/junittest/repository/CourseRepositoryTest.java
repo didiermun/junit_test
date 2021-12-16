@@ -28,10 +28,13 @@ public class CourseRepositoryTest {
     @Test
     public void findOneByName_Success(){
 
-        Optional<Course> courseOption = courseRepository.findById(111);
-        if(!courseOption.isPresent())
-            fail("Course with this id is not found");
-        assertEquals(courseOption.get().getName(),"Book1");
+        Optional<Course> course = courseRepository.findByName("Book6");
+
+        if (!course.isPresent())
+            fail("course with this name is not found");
+
+        assertEquals(course.get().getId(), 116);
+
     }
 
 
@@ -39,9 +42,10 @@ public class CourseRepositoryTest {
     @Test
     public void findOneByName_404(){
 
-        Optional<Course> course = courseRepository.findById(110);
-        assertEquals(false, course.isPresent());
+        Optional<Course> course = courseRepository.findByName("BOOKEE");
+        assertFalse(course.isPresent());
     }
+
 
     @Test
     public void removeOne(){
